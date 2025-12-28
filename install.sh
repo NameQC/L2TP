@@ -359,14 +359,14 @@ conn l2tp-psk-nonat
     keylife=1h
     type=transport
     left=%defaultroute
-    leftid=${IP}
+    leftid=${IP}no
     leftprotoport=17/1701
     right=%any
     rightprotoport=17/%any
     dpddelay=40
     dpdtimeout=130
     dpdaction=clear
-    sha2-truncbug=yes
+    sha2-truncbug=no
 EOF
 
     cat > /etc/ipsec.secrets<<EOF
