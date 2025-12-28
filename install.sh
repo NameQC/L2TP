@@ -453,6 +453,44 @@ EOF
     done
     sysctl -p
 
+    # ========== 添加 firewalld 支持（Ubuntu/Debian）==========
+    echo "尝试安装和配置 firewalld..."
+    if command -v apt-get &> /dev/null; then
+        # 检查是否已安装 firewalld
+        if ! command -v firewall-cmd &> /dev/null; then
+            echo "安装 firewalld..."
+            apt-get -y install firewalld
+        fi
+        
+        # 启动并启用 firewalld
+        if systemctl is-active --quiet firewalld 2>/dev/null; then
+            echo "firewalld 已在运行"
+        else
+            echo "启动 firewalld..."
+            systemctl start firewalld
+            systemctl enable firewalld
+        fi
+        
+        # 配置 firewalld 规则
+        if systemctl is-active --quiet firewalld 2>/dev/null; then
+            echo "配置 firewalld 规则..."
+            firewall-cmd --reload
+            firewall-cmd --permanent --add-port=500/udp --add-port=1701/udp --add-port=4500/udp
+            firewall-cmd --reload
+            
+            # 验证端口是否已开放
+            echo "验证端口配置..."
+            if firewall-cmd --query-port=500/udp && firewall-cmd --query-port=1701/udp && firewall-cmd --query-port=4500/udp; then
+                echo "端口 500/udp, 1701/udp, 4500/udp 已成功配置"
+            else
+                echo "警告: 端口配置验证失败，将使用 iptables 作为备选方案"
+            fi
+        else
+            echo "firewalld 启动失败，将使用 iptables 配置"
+        fi
+    fi
+    # ========== firewalld 配置结束 ==========
+
     if centosversion 6; then
         [ -f /etc/sysconfig/iptables ] && cp -pf /etc/sysconfig/iptables /etc/sysconfig/iptables.old.`date +%Y%m%d`
 
