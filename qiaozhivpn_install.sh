@@ -611,12 +611,12 @@ EOF
         echo "Checking firewalld status..."
         firewall-cmd --list-all
         echo "add firewalld rules..."
-        firewall-cmd --permanent --add-service=ipsec
-        firewall-cmd --permanent --add-service=xl2tpd
-        firewall-cmd --permanent --add-masquerade
-		firewall-cmd --permanent --add-port=500/udp
-        firewall-cmd --permanent --add-port=4500/udp
-        firewall-cmd --permanent --add-port=1701/udp
+        firewall-cmd --reload --add-service=ipsec
+        firewall-cmd --reload --add-service=xl2tpd
+        firewall-cmd --reload --add-masquerade
+		firewall-cmd --reload --add-port=500/udp
+        firewall-cmd --reload --add-port=4500/udp
+        firewall-cmd --reload --add-port=1701/udp
         firewall-cmd --reload
     else
         echo "Firewalld looks like not running, trying to start..."
@@ -627,9 +627,9 @@ EOF
             echo "Checking firewalld status..."
             firewall-cmd --list-all
             echo "adding firewalld rules..."
-            firewall-cmd --permanent --add-service=ipsec
-            firewall-cmd --permanent --add-service=xl2tpd
-            firewall-cmd --permanent --add-masquerade
+            firewall-cmd --reload --add-service=ipsec
+            firewall-cmd --reload --add-service=xl2tpd
+            firewall-cmd --reload --add-masquerade
             firewall-cmd --reload
         else
             echo "Failed to start firewalld. please enable udp port 500 4500 1701 manually if necessary."
