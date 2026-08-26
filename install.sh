@@ -6,7 +6,7 @@ export PATH
 #   Description: L2TP VPN Auto Installer                                #
 #             Linux 一键安装L2TP脚本 (汉化定制版)                       #
 #                                                                       #
-#                   Telegram联系：@Name_QC                               #
+#                   Telegram联系：@NameQC                               #
 #                      全球 免实名 服务器                                #
 #                  Telegram双向机器人：@NameQCBot                        #
 #                                                                       #
@@ -231,12 +231,12 @@ preinstall_l2tp(){
     [ -z ${iprange} ] && iprange="192.168.18"
 
     echo "请输入预共享密钥:"
-    read -p "(默认预共享密钥: Name_QC):" mypsk
-    [ -z ${mypsk} ] && mypsk="Name_QC"
+    read -p "(默认预共享密钥: @NameQC):" mypsk
+    [ -z ${mypsk} ] && mypsk="@NameQC"
 
     echo "请输入用户名:"
-    read -p "(默认用户名: Name_QC):" username
-    [ -z ${username} ] && username="Name_QC"
+    read -p "(默认用户名: @NameQC):" username
+    [ -z ${username} ] && username="@NameQC"
 
     password=`rand`
     echo "请输入 ${username}'s 密码:"
@@ -663,7 +663,7 @@ finally(){
     echo "# System Supported: CentOS 6+ / Debian 7+ / Ubuntu 12+        #"
     echo "#          Linux 一键安装L2TP脚本 (汉化定制版)                  #"
     echo "#                                                             #"
-    echo "#                   Telegram联系：@Name_QC                    #"
+    echo "#                   Telegram联系：@NameQC                    #"
     echo "#                   全球 免实名 服务器                        #"
     echo "#                   Telegram双向机器人：@NameQCBot            #"
     echo "###############################################################"
@@ -695,7 +695,7 @@ l2tp(){
     echo "# System Supported: CentOS 6+ / Debian 7+ / Ubuntu 12+        #"
     echo "#          Linux 一键安装L2TP脚本 (定制版)                     #"
     echo "#                                                             #"
-    echo "#                   Telegram联系：@Name_QC                    #"
+    echo "#                   Telegram联系：@NameQC                    #"
     echo "#                   全球 免实名 服务器                        #"
     echo "#                   Telegram双向机器人：@NameQCBot            #"
     echo "###############################################################"
